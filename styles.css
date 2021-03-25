@@ -47,13 +47,13 @@ i {
   position: absolute;
   bottom: 0%;
   background-color: white;
-  opacity: 0;
+  /* opacity: 0; */
   padding: 1rem;
   width: 80%;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
-  pointer-events: none;
-  transform: translateY(100px);
+  /* pointer-events: none; */
+  /* transform: translateY(100px); */
   transition: all 500ms ease-in-out;
 }
 
@@ -117,4 +117,13 @@ i {
   background: none;
   cursor: pointer;
   margin: 2rem 0rem;
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+  margin: 1rem 0;
+  width: 100%;
+  position: relative;
+  border-radius: 1rem;
+  cursor: pointer;
 }
