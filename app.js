@@ -24,6 +24,14 @@ function randomColors() {
     div.style.backgroundColor = randomColor
     hexText.innerHTML = randomColor
     checkTextContrast(randomColor, hexText)
+    const color = chroma(randomColor)
+    const sliders = div.querySelectorAll('.sliders input')
+    console.log(sliders)
+    const hue = sliders[0]
+    const brightness = sliders[1]
+    const saturation = sliders[2]
+
+    colorizeSliders(color, hue, brightness, saturation)
   })
 }
 
@@ -34,6 +42,16 @@ function checkTextContrast(color, text) {
   } else {
     text.style.color = 'white'
   }
+}
+
+function colorizeSliders(color, hue, brightness, saturation) {
+  const noSat = color.set('hsl.s', 0)
+  const fullSat = color.set('hsl.s', 1)
+  const scaleSat = chroma.scale([noSat, color, fullSat])
+
+  saturation.style.backgroundImage = `linear-gradient(to right, ${scaleSat(
+    0
+  )}, ${scaleSat(1)})`
 }
 
 randomColors()
