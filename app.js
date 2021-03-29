@@ -1,9 +1,14 @@
 // Set variables
 const colorDivs = document.querySelectorAll('.color')
 const generateBtn = document.querySelector('generate')
-const slider = document.querySelectorAll('input[type="range"]')
+const sliders = document.querySelectorAll('input[type="range"]')
 const currentHexes = document.querySelectorAll('.color h2')
 let initialColors
+
+// Event Listeners
+sliders.forEach((slider) => {
+  slider.addEventListener('input', hslControls)
+})
 
 //functions
 function generateHex() {
@@ -26,7 +31,6 @@ function randomColors() {
     checkTextContrast(randomColor, hexText)
     const color = chroma(randomColor)
     const sliders = div.querySelectorAll('.sliders input')
-    console.log(sliders)
     const hue = sliders[0]
     const brightness = sliders[1]
     const saturation = sliders[2]
@@ -59,6 +63,18 @@ function colorizeSliders(color, hue, brightness, saturation) {
     0
   )}, ${scaleBright(0.5)}, ${scaleBright(1)})`
   hue.style.backgroundImage = `linear-gradient(to right, rgb(204,75,75), rgb(204,204,75), rgb(75,204,75), rgb(75,204,204), rgb(75,75,204), rgb(204,75,204), rgb(204,75,75))`
+}
+
+function hslControls(e) {
+  const index =
+    e.target.getAttribute('data-bright') ||
+    e.target.getAttribute('data-sat') ||
+    e.target.getAttribute('data-hue')
+
+  let sliders = e.target.parentElement.querySelectorAll('input[type="range"]')
+  const hue = sliders[0]
+  const brightness = sliders[1]
+  const saturation = sliders[2]
 }
 
 randomColors()
