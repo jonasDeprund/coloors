@@ -64,7 +64,14 @@ function randomColors() {
   colorDivs.forEach((div, index) => {
     const hexText = div.children[0]
     const randomColor = generateHex()
-    initialColors.push(chroma(randomColor).hex())
+    // Add to an array
+    if (div.classList.contains('locked')) {
+      initialColors.push(hexText.innerText)
+      return
+    } else {
+      initialColors.push(chroma(randomColor).hex())
+    }
+
     div.style.backgroundColor = randomColor
     hexText.innerHTML = randomColor
     checkTextContrast(randomColor, hexText)
